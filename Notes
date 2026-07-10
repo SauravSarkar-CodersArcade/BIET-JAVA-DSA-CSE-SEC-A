@@ -1,0 +1,9 @@
+The 'super' keyword can be used for three different
+purposes:
+1. Parent class variables super.varName;
+2. Parent class methods super.methodName();
+3. Parent class constructor super();
+4. It helps to remove ambiguity between same
+   name entities in the child/parent classes.
+   child class : current class -> this keyword
+   parent class : super class -> super keyword

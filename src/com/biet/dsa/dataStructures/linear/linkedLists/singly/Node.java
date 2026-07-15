@@ -58,6 +58,58 @@ class LL {
         head = this.head.next;
         size--; // removal reduces the size by 1
     }
+    public void removeLast(){
+        // Empty List
+        if (head == null){
+            System.out.println("List is empty. Can't remove tail.");
+            return;
+        }
+        // Single Element
+        if (head.next == null){
+            head = null;
+            size--;
+            return;
+        }
+        // Multiple Nodes -> We need to find the last node
+        Node last = head.next;
+        Node secondLast = head;
+        while (last.next != null){
+            secondLast = last;
+            last = last.next;
+        }
+        // We will just connect the secondLast node to null
+        secondLast.next = null;
+        // The last node will be automatically deleted by the JVM
+    }
+    public void removeTarget(String target){
+        // Empty List
+        if (head == null){
+            System.out.println("List is empty. Can't remove target.");
+            return;
+        }
+        // target is located @ the head node
+        if (head.data.equals(target)){
+            head = this.head.next;
+            size--;
+            return;
+        }
+        // target is anywhere else in the list
+        Node prev = null;
+        Node curr = head;
+        while (curr != null && !curr.data.equals(target)){
+            prev = curr;
+            curr = curr.next;
+        }
+        // If the target is not found, curr will reach null ptr
+        if (curr == null){
+            System.out.println("Target not found.");
+            return;
+        }
+        // Make the adjustments of the previous & next nodes of curr
+        prev.next = curr.next;
+        size--;
+        System.out.println("target-node: " + target + " FOUND & DELETED");
+    }
     public static void main(String[] args) {
         LL sll = new LL();
         sll.addFirst("Linked List");
@@ -73,6 +125,11 @@ class LL {
         sll.printList();
         sll.removeFirst();
         sll.printList();
+        sll.removeLast();
+        sll.printList();
+        sll.removeTarget("classroom");
+        sll.printList();
+        sll.removeTarget("DSA");
     }
 }
 
